@@ -5,10 +5,6 @@ import os
 
 app = Flask(__name__)
 
-# Makes the static folder the image upload folder
-UPLOAD_FOLDER = 'static'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 # Stores the blog data
 blog_text = []
 blog_images = []
@@ -37,11 +33,11 @@ def blog_form():
 @app.route('/', methods=['GET'])
 @app.route('/blog', methods=['GET'])
 def blog():
-    rhtml = "<h1>McNeilogram!</h1>"
-
+    rhtml = """<h1>McNeilogram!</h1>
+                <a href="/blog/post">Make a post!</a>
+                <br>"""
     if (len(blog_images) == 0):
         return rhtml + "<p>There are no posts :(</p>"
-
     # Go through every blog image
     for x in range(0, len(blog_images)):
         # Adds an html row with blog text and an image
